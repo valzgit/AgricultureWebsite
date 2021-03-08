@@ -1,0 +1,238 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+<nav>
+    <a routerLink="/azuriranje">Azuriraj</a>
+    |
+    <a routerLink="/log">Log out</a>
+    |
+    <span *ngIf="navigacija==0">
+        <input type="button" class="btn-success" value="Change password" (click)="promenisifru()">
+       </span>
+       <span *ngIf="navigacija==1">
+       <input type="button" class="btn-success" value="Back" (click)="glavni()">
+       </span>
+</nav>
+</div>
+<div class="container">
+    <header align="center">#Admin</header>
+    <br>
+    <br>
+    <span *ngIf="navigacija==0">
+<div class="row align-items-start">
+    <div class="col">
+        <div class="page-header" align="center">
+            <h1>Zahtevi:</h1>
+        </div>
+        <br>
+        <br>
+        <table class="table table-bordered" align="center">
+            <tr *ngFor="let x of kp; let i=index">
+                <td align="center">
+                    {{x.username}}
+                </td>
+                <td align="center">
+                    <button class="btn-success" (click)="prebaci(kp[i])">Prihvati</button>
+                </td>
+        
+            </tr>
+        </table>
+    </div>
+    <div class="col">
+        <div class="page-header" align="center">
+            <h1>Korisnici:</h1>
+        </div>
+        <br>
+        <br><table class="table table-bordered" align="center">
+            <tr *ngFor="let xx of kp2; let ii=index">
+                <td align="center">
+                    {{xx.username}}
+                </td>
+                <td align="center">
+                    <span *ngIf="kp2[ii].username!='admin'">
+                    <button class="btn-danger" (click)="obrisi(kp2[ii])">Ukloni</button>
+                </span>
+                <span *ngIf="kp2[ii].username=='admin'">
+                    <button (click)="obrisi(kp2[ii])" disabled>Ukloni</button>
+                </span>
+                </td>
+        
+            </tr>
+        </table>
+    </div>
+    <div class="col">
+        <div class="page-header" align="center">
+        <h1>Ubaci korisnika:</h1>
+    </div>
+    <br>
+    <br>
+    <form align="center" id="povecaj">
+        Tip: 
+        <input type="radio" [(ngModel)]="tip" name="tip" value="poljoprivrednik">Poljoprivrednik
+        <input type="radio" [(ngModel)]="tip" name="tip" value="preduzece">Preduzece
+        
+    </form>
+    <div>&nbsp;</div>
+    <form>
+        <span *ngIf="tip=='preduzece'">
+            <table align="center">
+                <tr>
+                    <td>Pun naziv:</td>
+                    <td>
+                        <input type="text" name="Punoimepred" [(ngModel)]="preduzece.Punoime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Skracen naziv:</td>
+                    <td>
+                        <input type="text" name="Usernamepred" [(ngModel)]="preduzece.username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="Pass1pred" [(ngModel)]="preduzece.password1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ponovite lozinku:</td>
+                    <td>
+                        <input type="password" name="Pass2pred" [(ngModel)]="preduzece.password2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Datum osnivanja:</td>
+                    <td>
+                        <input type="date" name="Datumpred" [(ngModel)]="preduzece.Datum">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mesto:</td>
+                    <td>
+                        <input type="string" name="Mestopred" [(ngModel)]="preduzece.Mesto">
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>
+                        <input type="email" name="Emailpred" [(ngModel)]="preduzece.email">
+                    </td>
+                </tr>
+                <tr>
+                    <td  colspan="2" align="center">
+                    <button (click)="registruj()">Registruj se</button>
+                </td>
+                </tr>
+            </table>
+        </span>
+    
+    
+        <span *ngIf="tip=='poljoprivrednik'">
+            <table align="center">
+                <tr>
+                    <td>Ime:</td>
+                    <td>
+                        <input type="text" name="Imepoljopr" [(ngModel)]="poljoprivrednik.Ime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prezime:</td>
+                    <td>
+                        <input type="text" name="Prezimepoljopr" [(ngModel)]="poljoprivrednik.Prezime">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input type="text" name="Usernamepoljopr" [(ngModel)]="poljoprivrednik.username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="Password1poljopr" [(ngModel)]="poljoprivrednik.password1">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ponovite lozinku:</td>
+                    <td>
+                        <input type="password" name="Pass2poljopr" [(ngModel)]="poljoprivrednik.password2">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Datum rodjenja:</td>
+                    <td>
+                        <input type="date" name="Datumpoljopr" [(ngModel)]="poljoprivrednik.Datum">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Mesto rodjenja:</td>
+                    <td>
+                        <input type="string" name="Mestopoljopr" [(ngModel)]="poljoprivrednik.Mesto">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Telefon:</td>
+                    <td>
+                        <input type="text" name="Telefonpoljopr" [(ngModel)]="poljoprivrednik.Telefon">
+                    </td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td>
+                        <input type="email" name="Emailpoljopr" [(ngModel)]="poljoprivrednik.email">
+                    </td>
+                </tr>
+                <tr>
+                    <td  colspan="2" align="center">
+                        <button (click)="registruj()">Dodaj</button>
+                    </td>
+                </tr>
+            </table>
+        </span>
+    
+      
+    
+    </form>
+    
+    </div>
+  </div>
+</span>
+<span *ngIf="navigacija==1">
+    <form>
+        <table align="center">
+            <tr>
+                <td>
+                    Old password:
+                </td>
+                <td>
+                    <input type="password" name="starasif" [(ngModel)]="starasif">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    New password:
+                </td>
+                <td>
+                    <input type="password" name="novasif" [(ngModel)]="novasif">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Repeat new password:
+                </td>
+                <td>
+                    <input type="password" name="opetsif" [(ngModel)]="opetsif">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="Promeni" (click)="passchange()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</span>
+</div>
+

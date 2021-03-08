@@ -1,0 +1,10 @@
+.jumbotron{
+    background-image: url("/assets/company.jpg");
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+a {
+    color:white;
+    font-size: 22px;
+  }

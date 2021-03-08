@@ -1,0 +1,141 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+<nav>
+    <a routerLink="/admin">Glavna</a>
+    |
+    <a routerLink="/log">Log out</a>
+</nav>
+</div>
+<div class="container">
+    <header align="center">#Admin</header>
+    <br>
+    <br>
+    <div class="page-header" align="center">
+        <h1>Korisnici:</h1>
+    </div>
+    <div class="row">
+        <div class="col-8">
+    <br>
+        <br><table class="table table-bordered" align="center">
+            <tr *ngFor="let xx of kp; let ii=index">
+                <td align="center">
+                    {{xx.username}}
+                </td>
+                <td align="center">
+                    <span *ngIf="kp[ii].username!='admin'">
+                    <button class="btn-dark" (click)="dohvati(kp[ii])">Azuriraj</button>
+                </span>
+                <span *ngIf="kp[ii].username=='admin'">
+                    <button disabled>Azuriraj</button>
+                </span>
+                </td>
+        
+            </tr>
+        </table>
+    </div>
+    <div class="col-4">
+        <br>
+        <br>
+        <span *ngIf="izabran=='k'">
+        <table class="table table-bordered" align="center">
+            <tr>
+            <td align="center">
+                Ime:
+            </td>
+                <td align="center">
+                   <input type="text" name="ime" [(ngModel)]="polj[0].Ime">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    Prezime:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime2" [(ngModel)]="polj[0].Prezime">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    Datum:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime3" [(ngModel)]="polj[0].Datum">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                   Mesto:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime4" [(ngModel)]="polj[0].Mesto">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    Telefon:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime5" [(ngModel)]="polj[0].Telefon">
+                </td>
+            </tr>
+                <tr>
+                    <td align="center">
+                        Email:
+                    </td>
+                <td align="center">
+                    <input type="text" name="ime6" [(ngModel)]="polj[0].email">
+                </td>
+            </tr>
+            <tr>
+            <td align="center" colspan="2">
+                <input type="button" class="btn-info" value="Promeni" (click)="azurirajPolj()">
+            </td>
+        </tr>
+        </table>
+    </span>
+    <span *ngIf="izabran=='p'">
+        <table class="table table-bordered" align="center">
+            <tr>
+            <td align="center">
+                Naziv:
+            </td>
+                <td align="center">
+                   <input type="text" name="ime" [(ngModel)]="pred[0].ime">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    Datum:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime3" [(ngModel)]="pred[0].datum">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                   Mesto:
+                </td>
+                <td align="center">
+                    <input type="text" name="ime4" [(ngModel)]="pred[0].mesto">
+                </td>
+            </tr>
+                <tr>
+                    <td align="center">
+                        Email:
+                    </td>
+                <td align="center">
+                    <input type="text" name="ime6" [(ngModel)]="pred[0].email">
+                </td>
+            </tr>
+            <tr>
+            <td align="center" colspan="2">
+                <input type="button" class="btn-info" value="Promeni" (click)="azurirajPred()">
+            </td>
+            </tr>
+        </table>
+    </span>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+<nav>
+    <a routerLink="/log">Log in</a>
+    |
+    <a routerLink="/reg">Registracija</a>
+</nav>
+</div>
+<div class="container">
+    <div class="page-header" align="center">
+        <h1>Registrujte se ovde:</h1>
+    </div>
+    <br>
+    <br>
+    
+<form align="center" id="povecaj">
+    Tip korisnika: 
+    <input type="radio" [(ngModel)]="tip" name="izaberitip" value="poljoprivrednik">Poljoprivrednik
+    <input type="radio" [(ngModel)]="tip" name="izaberitip" value="preduzece">Preduzece
+    
+</form>
+<div>&nbsp;</div>
+<form>
+    <span *ngIf="tip=='preduzece'">
+        <table align="center">
+            <tr>
+                <td>Pun naziv:</td>
+                <td>
+                    <input type="text" name="Punoimepred" placeholder="Vase preduzece" [(ngModel)]="preduzece.Punoime">
+                </td>
+            </tr>
+            <tr>
+                <td>Skracen naziv:</td>
+                <td>
+                    <input type="text" name="Usernamepred" placeholder="Unikatno ime" [(ngModel)]="preduzece.username">
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                    <input type="password" name="Pass1pred" placeholder="Jaka sifra" [(ngModel)]="preduzece.password1">
+                </td>
+            </tr>
+            <tr>
+                <td>Ponovite lozinku:</td>
+                <td>
+                    <input type="password" name="Pass2pred" placeholder="Jaka sifra" [(ngModel)]="preduzece.password2">
+                </td>
+            </tr>
+            <tr>
+                <td>Datum osnivanja:</td>
+                <td>
+                    <input type="date" name="Datumpred" [(ngModel)]="preduzece.Datum">
+                </td>
+            </tr>
+            <tr>
+                <td>Mesto:</td>
+                <td>
+                    <input type="text" name="Mestopred" placeholder="Mesto mora postojati" [(ngModel)]="preduzece.Mesto">
+                </td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td>
+                    <input type="email" name="Emailpred" placeholder="Za obavestenja" [(ngModel)]="preduzece.email">
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="2" align="center">
+                <button (click)="registruj()">Registruj se</button>
+            </td>
+            </tr>
+        </table>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <div class="recaptcha" align="center">
+           <!--  siteKey="6Le4vugUAAAAADRzlu1gbC-OakEIFTqXONOFPO0z" >-->
+            <re-captcha (resolved)="resolved($event)" siteKey="6Legaf8UAAAAAHlUDCmNnrwzK18bSU8_ag-K-5Do" >
+            
+            </re-captcha>
+         </div>
+    </span>
+
+
+    <span *ngIf="tip=='poljoprivrednik'">
+        <table align="center">
+            <tr>
+                <td>Ime:</td>
+                <td>
+                    <input type="text" name="Imepoljopr" placeholder="Puno ime" [(ngModel)]="poljoprivrednik.Ime">
+                </td>
+            </tr>
+            <tr>
+                <td>Prezime:</td>
+                <td>
+                    <input type="text" name="Prezimepoljopr" placeholder="Prezime" [(ngModel)]="poljoprivrednik.Prezime">
+                </td>
+            </tr>
+            <tr>
+                <td>Korisnicko ime:</td>
+                <td>
+                    <input type="text" name="Usernamepoljopr" placeholder="Unikatno ime" [(ngModel)]="poljoprivrednik.username">
+                </td>
+            </tr>
+            <tr>
+                <td>Lozinka:</td>
+                <td>
+                    <input type="password" name="Pass1poljopr" placeholder="Jaka sifra" [(ngModel)]="poljoprivrednik.password1">
+                </td>
+            </tr>
+            <tr>
+                <td>Ponovite lozinku:</td>
+                <td>
+                    <input type="password" name="Pass2poljopr" placeholder="Jaka sifra" [(ngModel)]="poljoprivrednik.password2">
+                </td>
+            </tr>
+            <tr>
+                <td>Datum rodjenja:</td>
+                <td>
+                    <input type="date" name="Datumpoljopr" [(ngModel)]="poljoprivrednik.Datum">
+                </td>
+            </tr>
+            <tr>
+                <td>Mesto rodjenja:</td>
+                <td>
+                    <input type="text" name="Mestopoljopr" placeholder="Mesto mora postojati" [(ngModel)]="poljoprivrednik.Mesto">
+                </td>
+            </tr>
+            <tr>
+                <td>Telefon:</td>
+                <td>
+                    <input type="text" name="Telefonpoljopr" placeholder="+381xxxxxxxxx" [(ngModel)]="poljoprivrednik.Telefon">
+                </td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td>
+                    <input type="email" name="Emailpoljopr" placeholder="Za obavestenja" [(ngModel)]="poljoprivrednik.email">
+                </td>
+            </tr>
+            <tr>
+                <td  colspan="2" align="center">
+                    <button (click)="registruj()">Registruj se</button>
+                </td>
+            </tr>
+        </table>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <div class="recaptcha" align="center">
+            <re-captcha (resolved)="resolved($event)" siteKey="6Legaf8UAAAAAHlUDCmNnrwzK18bSU8_ag-K-5Do" >
+            
+            </re-captcha>
+          </div>
+    </span>
+
+  
+
+</form>

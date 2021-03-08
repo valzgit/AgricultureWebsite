@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/poljoprivrednik">Glavna</a>
+        |
+        <a routerLink="/log">Log out</a>
+    </nav>
+</div>
+<header align="center">
+    #{{username}}
+</header>
+<br>
+<div class="container">
+    <form>
+        <table align="center">
+            <tr>
+                <td>
+                    Naziv:
+                </td>
+                <td colspan="2">
+                    <input type="text" placeholder="Naziv rasadnika" name="naziv" [(ngModel)]="naziv">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mesto:
+                </td>
+                <td colspan="2">
+                    <input type="text" placeholder="Naziv grada" name="mesto" [(ngModel)]="mesto">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Duzina:
+                </td>
+                <td>
+                    <input type="number" min="1" placeholder="Ceo broj" name="duzina" [(ngModel)]="duzina">
+                </td>
+                <td>
+                    m
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Sirina:
+                </td>
+                <td>
+                    <input type="number" min="1" placeholder="Ceo broj" name="sirina" [(ngModel)]="sirina">
+                </td>
+                <td>
+                    m
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" align="center">
+                    <input type="button" value="Dodaj Rasadnik" (click)="dodajRasadnik()">
+                </td>
+
+            </tr>
+        </table>
+    </form>
+</div>

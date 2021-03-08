@@ -1,0 +1,121 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/poljoprivrednik">Glavna</a>
+        |
+        <a routerLink="/log">Log out</a>
+    </nav>
+</div>
+<header align="center">
+    #{{username}}
+</header>
+<h2 align="center">
+    {{rasadnik.naziv}} ||
+    {{rasadnik.mesto}}
+</h2>
+<br>
+<div class="container">
+    <div>
+        Sortiranje:
+        <select [(ngModel)]="izabrano">
+            <option selected>Ne sortiraj</option>
+            <option>Naziv</option>
+            <option>Kolicina</option>
+            <option>Proizvodjac</option>
+            <option>A-Z</option>
+            <option>A-Z (Preduzece)</option>
+            <option>Kucaj</option>
+            <option>Kucaj (Preduzece)</option>
+        </select>
+        <span *ngIf="izabrano=='Naziv'">
+            <select [(ngModel)]="naziv">
+                <option *ngFor="let x of nazivi">
+                    {{x.naziv}}
+                </option>
+            </select>
+        </span>
+        <span *ngIf="izabrano=='Proizvodjac'">
+            <select [(ngModel)]="proizvodjac">
+                <option *ngFor="let x of proizvodjaci">
+                    {{x.ime}}
+                </option>
+            </select>
+        </span>
+        <span *ngIf="izabrano=='Kolicina'">
+            <select [(ngModel)]="kolicina">
+                <option>
+                    Opadajuce
+                </option>
+                <option>
+                    Rastuce
+                </option>
+            </select>
+        </span>
+        <span *ngIf="izabrano=='A-Z'">
+
+        </span>
+        <span *ngIf="izabrano=='A-Z (Preduzece)'">
+            
+        </span>
+        <span *ngIf="izabrano=='Kucaj' || izabrano=='Kucaj (Preduzece)'">
+            <input type="text" name="ukucanitekst" [(ngModel)]="ukucanitekst">
+        </span>
+        &nbsp;
+        <input type="button" class="btn-secondary" value="Filter" (click)="filter()">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dodajte nove proizvode:
+        <img src="/assets/shop.png" routerLink="/shop" width='70'>
+    </div>
+<!--     <br>
+    <br> -->
+    <div class="row">
+        <div class="col-12">
+
+            <table align="center" class="table table-striped">
+                <thead align="center" style="background-color: rgb(180, 21, 21);">
+                    <th align="center">Naziv</th>
+                    <th align="center">Kolicina</th>
+                    <th align="center">Proizvodjac</th>
+                    <th align="center">Izaberi proizvod</th>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let x of proizvodi;let i=index">
+                        <td align="center">
+                            {{x.naziv}}
+                        </td>
+                        <td align="center">
+                            {{x.kol}}
+                        </td>
+                        <td align="center">
+                            {{x.ime}}
+                        </td>
+                        <td *ngIf="prosledjenasadnica!=null && x.vrsta=='s' && ubrzaj==null && x.brojocena!=-1 && x.brojocena!=-2" align="center">
+                            <input type="button" class="btn-success" value="Posadi" (click)="posadi(i)">
+                        </td>
+                        <td *ngIf="prosledjenasadnica!=null && x.vrsta=='p' && ubrzaj==null && x.brojocena!=-1 && x.brojocena!=-2" align="center">
+                            <input type="button" value="Posadi" (click)="posadi(i)" disabled>
+                        </td>
+                        <td *ngIf="prosledjenasadnica!=null && x.vrsta=='p' && ubrzaj!=null && x.brojocena!=-1 && x.brojocena!=-2" align="center">
+                            <input type="button" class="btn-success" value="Primeni" (click)="primeni(i)">
+                        </td>
+                        <td *ngIf="prosledjenasadnica!=null && x.vrsta=='s' && ubrzaj!=null && x.brojocena!=-1 && x.brojocena!=-2" align="center">
+                            <input type="button" value="Primeni" (click)="primeni(i)" disabled>
+                        </td>
+                        <td *ngIf="x.brojocena==-1 && prosledjenasadnica==null" align="center">
+                            <input type="button" class="btn-error" value="Ponisti porudzbinu {{x.ocena}}" (click)="ponisti(i)">
+                        </td>
+                        <td *ngIf="(x.brojocena==-1  && prosledjenasadnica!=null) || x.brojocena==-2" align="center">
+                            <input type="button" value="Ponisti porudzbinu {{x.ocena}}" disabled>
+                        </td>
+                        <td *ngIf="x.brojocena!=-1 && x.brojocena!=-2  && prosledjenasadnica==null" align="center">
+                           &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

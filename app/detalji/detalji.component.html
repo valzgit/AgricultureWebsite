@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/barovi">Statistika</a>
+        |
+        <a routerLink="/stepper">Dodaj/Skini</a>
+        |
+        <a routerLink="/preduzece">Glavna</a>
+        |
+        <a routerLink="/log">Log out</a>
+    </nav>
+</div>
+<header align="center">
+   #{{username}}
+</header>
+<div align="center">
+<a  (click)="vrati()" style="color: teal;" align="center">Back</a> 
+</div>
+<br>
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead align="center">
+        <th align="center">
+            Naziv
+        </th>
+        <th align="center">
+            Vrsta
+        </th>
+        <th align="center">
+            Dani
+        </th>
+        <th align="center">
+            Cena
+        </th>
+        <th align="center">
+            Prosecna ocena
+        </th>
+    </thead>
+    <tbody align="center">
+        <td align="center">
+            {{ceoproizvod.naziv}}
+        </td>
+        <td align="center" *ngIf="ceoproizvod.vrsta=='s'">
+            Sadnica
+        </td>
+        <td align="center" *ngIf="ceoproizvod.vrsta!='s'">
+            Preparat
+        </td>
+        <td align="center">
+            {{ceoproizvod.dani}}
+        </td>
+        <td align="center">
+            {{ceoproizvod.cena}}
+        </td>
+        <td align="center">
+            {{ceoproizvod.ocena}}
+        </td>
+    </tbody>
+    </table>
+    <table class="table table-striped table-bordered" align="center">
+        <thead align="center">
+            <th align="center">Korisnik</th>
+            <th align="center">Komentar</th>
+            <th align="center">Ocena</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of komentari" align="center">
+                <td align="center">
+                    {{x.user}}
+                </td>
+                <td align="center">
+                    {{x.komentar}}
+                </td>
+                <td align="center">
+                    {{x.ocena}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

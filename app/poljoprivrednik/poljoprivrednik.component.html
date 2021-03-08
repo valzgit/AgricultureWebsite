@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/rasadnik" (click)="cleartimer12()">Dodaj rasadnik</a>
+        |
+        <a routerLink="/log" (click)="cleartimer12()">Log out</a>
+        |
+        <span *ngIf="navigacija==0">
+            <input type="button" class="btn-success" value="Change password" (click)="promenisifru()">
+        </span>
+        <span *ngIf="navigacija==1">
+            <input type="button" class="btn-success" value="Back" (click)="glavni()">
+        </span>
+    </nav>
+</div>
+<header align="center">
+    #{{username}}
+</header>
+<br>
+<span *ngIf="navigacija==0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <table align="center" class="table">
+                    <thead align="center">
+                        <th align="center">Naziv</th>
+                        <th align="center">Mesto</th>
+                        <th align="center">Zasadjeno</th>
+                        <th align="center">Slobodno</th>
+                        <th align="center">Voda</th>
+                        <th align="center">Temperatura</th>
+                        <th>&nbsp;</th>
+                    </thead>
+                    <tr *ngFor="let x of rasadnici;let i=index">
+                        <td align="center">
+                            {{x.naziv}}
+                        </td>
+                        <td align="center">
+                            {{x.mesto}}
+                        </td>
+                        <td align="center">
+                            {{x.zauzeto}}
+                        </td>
+                        <td align="center">{{x.slobodno}}</td>
+                        <td align="center">{{x.voda}}</td>
+                        <td align="center">{{x.temp}}</td>
+                        <td align="center"><input type="button" value="Prikazi" (click)="nacrtaj(rasadnici[i],i)"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <span *ngIf="izabrano!=-1">
+        <div align="center">
+        Temperatura:
+        <input type="button" class="btn-warning" value="—" (click)="smanji()">
+        <input type="button" class="btn-warning" value="+" (click)="povecaj()">
+        <b> {{rasadnici[unizu].temp}} °C</b> 
+        &nbsp;&nbsp;&nbsp;
+        Voda:
+        <input type="button" class="btn-info" value="—" (click)="smanjil()">
+        <input type="button" class="btn-info" value="+" (click)="povecajl()">
+       <b> {{rasadnici[unizu].voda}} l</b> 
+          &nbsp;&nbsp;&nbsp;Magacin:<img src="/assets/box.png" routerLink="/magacin" width=100px>
+        </div>
+        <br>
+        <br>
+        <div id="crops">
+            <span *ngFor="let x of sadnice;let i=index">
+                <span *ngIf="x.proizvod=='Prazan'">
+                <img src="/assets/trava.png" (click)="openDialog(i)" [style.width.%]="100/rasadnici[unizu].duz">
+                </span>
+                <span *ngIf="x.proizvod!='Prazan' && x.proizvod!='Pending' && x.izvadi!=0">
+                    <img src="/assets/bush.png" (click)="openDialog(i)" [style.width.%]="100/rasadnici[unizu].duz">
+                </span>
+                <span *ngIf="x.proizvod!='Prazan' && x.proizvod!='Pending' && x.izvadi==0">
+                    <img src="/assets/iscupaj.png" (click)="openDialog(i)" [style.width.%]="100/rasadnici[unizu].duz">
+                </span>
+                <span *ngIf="x.proizvod=='Pending'">
+                    <img src="/assets/zemlja.png" (click)="openDialog(i)" [style.width.%]="100/rasadnici[unizu].duz">
+                </span>
+
+            </span>
+        </div>
+    </span>
+</span>
+<span *ngIf="navigacija==1">
+    <form>
+        <table align="center">
+            <tr style="background-color: white;">
+                <td>
+                    Old password:
+                </td>
+                <td>
+                    <input type="password" name="starasif" [(ngModel)]="starasif">
+                </td>
+            </tr>
+            <tr style="background-color: white;">
+                <td>
+                    New password:
+                </td>
+                <td>
+                    <input type="password" name="novasif" [(ngModel)]="novasif">
+                </td>
+            </tr>
+            <tr style="background-color: white;">
+                <td>
+                    Repeat new password:
+                </td>
+                <td>
+                    <input type="password" name="opetsif" [(ngModel)]="opetsif">
+                </td>
+            </tr>
+            <tr style="background-color: white;">
+                <td colspan="2" align="center">
+                    <input type="button" value="Promeni" (click)="passchange()">
+                </td>
+            </tr>
+        </table>
+    </form>
+</span>
+<simple-notifications></simple-notifications>

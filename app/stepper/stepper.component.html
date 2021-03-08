@@ -1,0 +1,115 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/barovi">Statistika</a>
+        |
+        <a routerLink="/nudi">Pregled proizvoda</a>
+        |
+        <a routerLink="/preduzece">Glavna</a>
+        |
+        <a routerLink="/log">Log out</a>
+    </nav>
+</div>
+<header align="center">
+    #{{username}}
+</header>
+<br>
+<div align="center">
+    <input type="radio" name="dodaj" value="dodaj" [(ngModel)]="dodaj" align="center">Dodaj
+    <input type="radio" name="skini" value="skini" [(ngModel)]="dodaj" align="center">Povuci iz prodaje
+</div>
+<span *ngIf="dodaj=='dodaj'">
+    <form>
+        <mat-horizontal-stepper [linear]=true>
+            <mat-step label="Naziv">
+                <div class="container" align="center">
+                    Unesite naziv proizvoda:
+                    <input type="text" name="ime1" [(ngModel)]="naziv" required align="center">
+                </div>
+            </mat-step>
+            <mat-step label="Vrsta">
+                <div class="container" align="center">
+                    Unesite vrstu proizvoda:
+                    <input type="radio" name="ime2" value="s" [(ngModel)]="vrsta" align="center">Sadnica
+                    <input type="radio" name="ime3" value="p" [(ngModel)]="vrsta" align="center">Preparat
+                </div>
+            </mat-step>
+            <mat-step label="Dani">
+                <div class="container" align="center">
+                    Unesite koliko treba proizvodu da izraste/za koliko dana preparat ubrza rast:
+                    <input type="number" min="1" name="ime4" [(ngModel)]="dani" required align="center">
+                </div>
+            </mat-step>
+            <mat-step label="Kolicina">
+                <div class="container" align="center">
+                    Unesite kolicinu proizvoda:
+                    <input type="number" min="1" name="ime5" [(ngModel)]="kolicina" required align="center">
+                </div>
+            </mat-step>
+            <mat-step label="Cena">
+                <div class="container" align="center">
+                    Unesite jedinicnu cenu proizvoda:
+                    <input type="number" min="1" name="ime6" [(ngModel)]="cena" required align="center">
+                </div>
+            </mat-step>
+            <mat-step label="Kraj">
+                <div class="container" align="center">
+                    <input type="button" class="btn-success" style="width: 10%; font-size: large;" value="Zavrsite"
+                        (click)="zavrsi()" align="center">
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </form>
+</span>
+<span *ngIf="dodaj!='dodaj'">
+    <div class="container">
+        <br>
+        <br>
+        <table class="table">
+            <thead align="center" style="background-color: rgb(5, 107, 107); color: white;">
+            <th align="center">
+                Naziv
+            </th>
+            <th align="center">
+                Vrsta
+            </th>
+            <th align="center">
+                Dani
+            </th>
+            <th align="center">
+                Cena
+            </th>
+            <th align="center">
+                Povuci iz prodaje?
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of proizvodi;let i=index" align="center">
+                <td align="center">
+                    {{x.naziv}}
+                </td>
+                <td align="center">
+                   <span *ngIf="x.vrsta=='s'">
+                    Sadnica
+                   </span> 
+                   <span *ngIf="x.vrsta!='s'">
+                    Preparat
+                   </span> 
+                </td>
+                <td align="center">
+                    {{x.dani}}
+                </td>
+                <td>
+                    {{x.cena}}
+                </td>
+                <td align="center">
+                    <input type="button" value="Povuci" (click)="povuci(x,i)">
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</span>

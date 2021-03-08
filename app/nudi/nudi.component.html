@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+    <img src="/assets/leaf.png" width='100'>
+    <div>&nbsp;</div>
+    <nav>
+        <a routerLink="/barovi">Statistika</a>
+        |
+        <a routerLink="/stepper">Dodaj/Skini</a>
+        |
+        <a routerLink="/preduzece">Glavna</a>
+        |
+        <a routerLink="/log">Log out</a>
+    </nav>
+</div>
+<header align="center">
+    #{{username}}
+</header>
+<br>
+<div class="container">
+    <br>
+    <br>
+    <table class="table">
+        <thead align="center" style="background-color: rgb(5, 107, 107); color: white;">
+        <th align="center">
+            Naziv
+        </th>
+        <th align="center">
+            Vrsta
+        </th>
+        <th align="center">
+            Dani
+        </th>
+        <th align="center">
+            Cena
+        </th>
+        <th align="center">
+            Vise informacija?
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let x of proizvodi;let i=index" align="center">
+            <td align="center">
+                {{x.naziv}}
+            </td>
+            <td align="center">
+               <span *ngIf="x.vrsta=='s'">
+                Sadnica
+               </span> 
+               <span *ngIf="x.vrsta!='s'">
+                Preparat
+               </span> 
+            </td>
+            <td align="center">
+                {{x.dani}}
+            </td>
+            <td>
+                {{x.cena}}
+            </td>
+            <td align="center">
+                <input type="button" class="btn-info" value="Info" (click)="info(i)">
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>

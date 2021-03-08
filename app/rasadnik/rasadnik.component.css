@@ -1,0 +1,27 @@
+.jumbotron{
+    background-image: url("/assets/crops.jpg");
+    background-size: cover;
+    text-align: center;
+    color: white;
+}
+a {
+    color:white;
+    font-size: 22px;
+  }
+.first{
+    height:10px;
+    widows: 100%;
+    background:#ddd;
+}
+.second{
+    height: 10px;
+    background:#009200;
+}
+.third{
+    height: 10px;
+    background-image: url("/assets/water.jpg");
+    background-size: cover;
+}
+#b1{
+    width: 5%;
+}

@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<div class="jumbotron">
+
+    <img src="/assets/leaf.png" width='100'>
+<div>&nbsp;</div>
+    <nav>
+        <a routerLink="/log">Log in</a>
+        |
+        <a routerLink="/reg">Registracija</a>
+    </nav>
+
+</div>
+<div class="container">
+    <div class="page-header" align="center">
+        <h1>Logujte se ovde:</h1>
+    </div>
+    <br>
+    <br>
+    <form>
+        <div align="center">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input type="text" name="username" [(ngModel)]="username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" name="sifra" [(ngModel)]="sifra">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <button class="btn-link" (click)="uloguj()">Uloguj se</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+</div>
