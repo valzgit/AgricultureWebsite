@@ -1,3 +1,5 @@
+# All folders and files beside PiaServ and baza2.sql belong in PiaProj/projekat dir
+
 # Projekat
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
